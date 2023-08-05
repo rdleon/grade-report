@@ -35,6 +35,8 @@ services:
       - DATABASE_HOST=${DB_HOST}
     ports:
       - '1234:5432'
+    volumes:
+      - ./pg_data:/var/lib/posgresql/data
     networks:
       - grades
 
@@ -48,8 +50,14 @@ services:
       - DATABASE_HOST=${TEST_DB_HOST}
     ports:
       - '4568:5432'
+    volumes:
+      - ./pg_data_test:/var/lib/posgresql/data
     networks:
       - grades
+
+volumes:
+  pg_data:
+  pg_data_test:
 
 # Networks to be created to facilitate communication between containers
 networks:
